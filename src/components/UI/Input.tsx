@@ -1,15 +1,18 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import s from "./Input.module.css"
 
 interface InputProps{
     type: string,
-    placeholder?: string
+    placeholder?: string,
+    value1?: string
 }
 
 const Input: FC<InputProps> = ({
-    type, placeholder
+    type, placeholder, value1}) => {
 
-                               }) => {
+    useEffect(()=>{
+        value1 ? setValue(value1) : setValue("")
+    }, [])
 
     const [value, setValue] = useState<string>("")
 

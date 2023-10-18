@@ -1,0 +1,11 @@
+.UserInfoText p{
+    font-size: 25px;
+}
+
+.ChangeInput{
+    display: flex;
+}
+
+.UserInfoText:hover{
+    cursor: pointer;
+}
