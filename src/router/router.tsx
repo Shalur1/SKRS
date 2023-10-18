@@ -1,5 +1,5 @@
-import UserList from "../components/UserList";
-import Login from "../components/Login";
+import UserList from "../components/UserList/UserList";
+import Login from "../components/Login/Login";
 
 
 export const privateRoutes = [

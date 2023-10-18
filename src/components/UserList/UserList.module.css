@@ -1,0 +1,10 @@
+.UserListDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.UserList{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}

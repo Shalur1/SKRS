@@ -1,5 +1,7 @@
 import React from 'react';
 import {FC} from "react";
+import s from "./Select.module.css"
+
 
 interface IOption{
     value: string,
@@ -15,7 +17,7 @@ const Select:FC<SelectProps> = ({
                                 }) => {
     return (
         <div>
-            <select name="" id="">
+            <select className={s.Select} name="" id="">
                 {options.map((elem) =>(
                     <option>{elem.value}</option>
                 ))}

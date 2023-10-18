@@ -1,7 +1,7 @@
-import React, {FC} from 'react';
-import s from  "../styles/Login.module.css"
-import Input from "./UI/Input";
-import Button from "./UI/Button";
+import React, {FC} from 'react'
+import s from "./Login.module.css"
+import Input from "../UI/Input";
+import Button from "../UI/Button";
 import {useNavigate} from "react-router-dom";
 
 interface LoginProps {
