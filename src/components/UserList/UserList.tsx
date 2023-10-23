@@ -1,9 +1,11 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import s from "./UserList.module.css"
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import UserInfo from "./UserInfo/UserInfo";
 import Select from "../UI/Select";
+import {useAppSelector} from "../../hooks/redux";
+import {useNavigate} from "react-router-dom";
 
 interface UserListProps {
     name: string,
@@ -14,40 +16,18 @@ interface UserListProps {
 }
 
 const UserList: FC<UserListProps> = ({
-                                         name, username, email, birthday, city
+                                         name, username, email, birthday, city,
                                      }) => {
 
-    let [optionValue, setOptionValue] = useState<string>("Lida")
+    let cityList = useAppSelector(state => state.profileReducer.cityList)
 
-    let options = [
-        {value: "Lida"},
-        {value: "Mak.by"},
-        {value: "KFC"},
-        {value: "Minsk"},
-        {value: "v mame"},
-
-    ]
-
-    let [isActive, setIsActive] = useState<boolean>(false)
-
-    // let setActive = function () {
-    //     setIsActive(!isActive)
-    // }
-
-
-    let changeSelect = function (e: React.ChangeEvent<HTMLSelectElement>) {
-        setOptionValue(e.target.value)
-    }
 
     return (
         <div className={s.UserListDiv}>
             <div className={s.UserList}>
                 <UserInfo name={name} email={email} username={username} birthday={birthday}/>
                 <div className={s.Select}>
-                    <Select options={options}/>
-                </div>
-                <div>
-                    <Button>Редактировать профиль</Button>
+                    <Select options={cityList}/>
                 </div>
             </div>
         </div>

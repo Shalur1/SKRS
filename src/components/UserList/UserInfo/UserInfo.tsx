@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import UserInfoText from "./UserInfoText/UserUnfoText";
 
 interface UserInfoProps {
@@ -9,14 +9,13 @@ interface UserInfoProps {
     city?: string
 }
 
-
 const UserInfo: FC<UserInfoProps> = ({name, username, email, birthday, city}) => {
     return (
         <div>
             <div>
-                <UserInfoText text={name}/>
-                <UserInfoText text={username}/>
-                <UserInfoText text={email}/>
+                <UserInfoText text={name} name={"name"}/>
+                <UserInfoText text={username} name={"username"}/>
+                <UserInfoText text={email} name={"email"}/>
                 <p>{birthday ? birthday : <p>не родился</p>}</p>
                 <div>
                     Lida

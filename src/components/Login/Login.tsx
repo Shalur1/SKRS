@@ -12,6 +12,9 @@ const Login:FC<LoginProps> = ({setIsAuthTrue}) => {
 
     const navigate = useNavigate()
 
+    let Change = function (text: string) {
+        return text
+    }
 
     let gg = function () {
         setIsAuthTrue()
@@ -21,8 +24,8 @@ const Login:FC<LoginProps> = ({setIsAuthTrue}) => {
     return (
         <div className={s.Login}>
             <div className={s.Inputs}>
-               Login: <Input type={"text"} placeholder={"Введите логин"}/>
-               Password: <Input placeholder={"Введите пароль"} type={"password"}/>
+               Login: <Input F={Change} value={""} type={"text"} placeholder={"Введите логин"}/>
+               Password: <Input F={Change} value={""} placeholder={"Введите пароль"} type={"password"}/>
             </div>
             <div onClick={gg}>
                 <Button>Login</Button>

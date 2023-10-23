@@ -1,28 +1,30 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useContext, useEffect, useRef, useState} from 'react';
 import s from "./Input.module.css"
+import {useValidation} from "../../hooks/useValidation";
 
-interface InputProps{
+interface InputProps {
     type: string,
     placeholder?: string,
-    value1?: string
+    value: string,
+    F: (text: string) => void,
+    error?: string
 }
 
 const Input: FC<InputProps> = ({
-    type, placeholder, value1}) => {
 
-    useEffect(()=>{
-        value1 ? setValue(value1) : setValue("")
-    }, [])
+    type, placeholder, F, value, error}) => {
 
-    const [value, setValue] = useState<string>("")
 
     let ChangeInput = function (e: React.ChangeEvent<HTMLInputElement>) {
-        setValue(e.target.value)
+        F(e.target.value)
     }
+
+
 
     return (
         <div className={s.Input}>
-            <input placeholder={placeholder} value={value} onChange={ChangeInput} type={type}/>
+            {error ? <div style={{color:"red"}}>{error}</div> : <div></div>}
+            <input placeholder={placeholder} value={value}  onChange={ChangeInput} type={type}/>
         </div>
     );
 };
