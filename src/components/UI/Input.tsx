@@ -1,6 +1,5 @@
-import React, {FC, useContext, useEffect, useRef, useState} from 'react';
+import React, {FC} from 'react';
 import s from "./Input.module.css"
-import {useValidation} from "../../hooks/useValidation";
 
 interface InputProps {
     type: string,
@@ -23,8 +22,10 @@ const Input: FC<InputProps> = ({
 
     return (
         <div className={s.Input}>
-            {error ? <div style={{color:"red"}}>{error}</div> : <div></div>}
-            <input placeholder={placeholder} value={value}  onChange={ChangeInput} type={type}/>
+            {error ? <div className={s.errorWrapper}><p className={s.errorMessage}>{error}</p></div> : <div></div>}
+            <div className={s.inputWrapper}>
+                <input className={s.input} placeholder={placeholder} value={value}  onChange={ChangeInput} type={type}/>
+            </div>
         </div>
     );
 };

@@ -11,7 +11,7 @@ const initialState: ProfileState = {
     name: "Aliaksandr",
     username: "Shlapik",
     email: "lolxax52@gmail.com",
-    cityList:[
+    cityList: [
         {value: "Lida"},
         {value: "Mak.by"},
         {value: "KFC"},
@@ -24,18 +24,22 @@ const profileSlice = createSlice({
         name: 'profile',
         initialState,
         reducers: {
-            changeName(state, action) {
-                state.name = action.payload
-            },
-            changeUserName(state, action) {
-                state.username = action.payload
-            },
-            changeEmail(state, action) {
-                state.email = action.payload
-            },
+            setProfileInfo(state, action) {
+                state.email = action.payload.email
+                state.name = action.payload.name
+                state.username = action.payload.username
+            }
         },
     })
 ;
+
+export const {
+    setProfileInfo
+} = profileSlice.actions;
+
+export const SetProfileInfo = (obj: object) => (dispatch: any) => {
+    dispatch(setProfileInfo(obj))
+};
 
 export const profileActions = profileSlice.actions;
 export const profileReducer = profileSlice.reducer;

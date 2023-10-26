@@ -1,33 +1,45 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import s from "./UserList.module.css"
-import Button from "../UI/Button";
-import Input from "../UI/Input";
 import UserInfo from "./UserInfo/UserInfo";
 import Select from "../UI/Select";
-import {useAppSelector} from "../../hooks/redux";
-import {useNavigate} from "react-router-dom";
+import {useAppDispatch, useAppSelector} from "../../hooks/redux";
+import {useLocalStorage} from "../../hooks/useLocalStorage";
+import {SetProfileInfo} from "../../redux/profile/profileSlice";
 
 interface UserListProps {
-    name: string,
-    username: string,
-    email: string,
-    birthday?: string,
-    city?: string
+
 }
 
-const UserList: FC<UserListProps> = ({
-                                         name, username, email, birthday, city,
-                                     }) => {
+const UserList: FC<UserListProps> = () => {
 
-    let cityList = useAppSelector(state => state.profileReducer.cityList)
+    const initialObject = {
+        name: "Aliaksandr",
+        username: "Shlapik",
+        email: "lolxax52@gmail.com",
+        cityList:[
+            {value: "Lida"},
+            {value: "Mak.by"},
+            {value: "KFC"},
+            {value: "Minsk"},
+            {value: "v mame"},
+        ]
+    };
 
+    const uInfo = useAppSelector(state => state.profileReducer)
+    const {getInfo, setInfo} = useLocalStorage()
+    const dispatch = useAppDispatch()
+
+    useEffect(()=>{
+        setInfo("uInfo", initialObject)
+        dispatch(SetProfileInfo(getInfo("uInfo")))
+    },[])
 
     return (
         <div className={s.UserListDiv}>
             <div className={s.UserList}>
-                <UserInfo name={name} email={email} username={username} birthday={birthday}/>
+                <UserInfo namee={uInfo.name} email={uInfo.email} username={uInfo.username}/>
                 <div className={s.Select}>
-                    <Select options={cityList}/>
+                    <Select options={uInfo.cityList}/>
                 </div>
             </div>
         </div>

@@ -9,3 +9,8 @@
 .UserInfoText:hover{
     cursor: pointer;
 }
+
+.efc{
+    display: flex;
+    align-items: center;
+}
